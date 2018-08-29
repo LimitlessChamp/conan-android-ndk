@@ -1,18 +1,17 @@
-import platform
-
-from conans import ConanFile, CMake, tools
+from conans import ConanFile, tools
 import os
 
 from os import unlink
 
 
-class AndroidndkConan(ConanFile):
+class AndroidNdkConan(ConanFile):
     name = "android-ndk"
-    version = "r13b"
+    version = "r17b"
     license = "GPL/APACHE2"
-    url = "https://github.com/lasote/conan-android-ndk.git"
+    url = "https://github.com/conan-mobile/conan-android-ndk.git"
     settings = None
     options = {"host_os": ["Linux", "Windows", "Macos"], "host_arch": ["x86", "x86_64"]}
+    description = "Conan Package for the Android NDK toolchain"
 
     def config_options(self):
         os_info = tools.OSInfo()
@@ -34,14 +33,14 @@ class AndroidndkConan(ConanFile):
 
     def source(self):
 
-        urls = {"Windows_x86_64": ["https://dl.google.com/android/repository/android-ndk-r13b-windows-x86_64.zip",
-                                   "649d306559435c244cec5881b880318bb3dee53a"],
-                "Windows_x86": ["https://dl.google.com/android/repository/android-ndk-r13b-windows-x86.zip",
-                                "4eb1288b1d4134a9d6474eb247f0448808d52408"],
-                "Macos_x86_64": ["https://dl.google.com/android/repository/android-ndk-r13b-darwin-x86_64.zip",
-                                 "71fe653a7bf5db08c3af154735b6ccbc12f0add5"],
-                "Linux_x86_64": ["https://dl.google.com/android/repository/android-ndk-r13b-linux-x86_64.zip",
-                                 "0600157c4ddf50ec15b8a037cfc474143f718fd0"]
+        urls = {"Windows_x86_64": ["https://dl.google.com/android/repository/android-ndk-%s-windows-x86_64.zip" % self.version,
+                                   "71d2ba2f1618a27a629ce019fc8e46f28ffdd49f"],
+                "Windows_x86": ["https://dl.google.com/android/repository/android-ndk-%s-windows-x86.zip" % self.version,
+                                "41e4720fc10a993a336c7b416474bc3e1f8fb1e9"],
+                "Macos_x86_64": ["https://dl.google.com/android/repository/android-ndk-%s-darwin-x86_64.zip" % self.version,
+                                 "f990aafaffec0b583d2c5420bfa622e52ac14248"],
+                "Linux_x86_64": ["https://dl.google.com/android/repository/android-ndk-%s-linux-x86_64.zip" % self.version,
+                                 "dd5762ee7ef4995ad04fe0c45a608c344d99ca9f"]
         }
 
         try:
