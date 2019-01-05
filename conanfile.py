@@ -12,7 +12,8 @@ class AndroidNdkConan(ConanFile):
     settings = None
     options = {"host_os": ["Linux", "Windows", "Macos"], "host_arch": ["x86", "x86_64"]}
     description = "Conan Package for the Android NDK toolchain"
-
+    short_paths = True
+ 
     def config_options(self):
         os_info = tools.OSInfo()
         if os_info.is_linux:
